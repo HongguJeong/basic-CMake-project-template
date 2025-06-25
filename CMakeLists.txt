@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 project(project LANGUAGES CXX)
 
 #------Configures------#
-# Clang configure
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# Clang configure ( uncomment only root CMakeLists.txt )
+# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # if Debug (uncomment 2 lines)
 # set(CMAKE_BULD_TYPE Debug)
