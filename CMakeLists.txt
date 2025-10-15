@@ -9,6 +9,49 @@ project(project LANGUAGES CXX)
 # set(CMAKE_BULD_TYPE Debug)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -g")
 
+#------External libraries------#
+## Option1: Using find_package
+# [Normal]
+# find_package(Boost REQUIRED)
+# if (!Boost_FOUND)
+#   message(FATAL_ERROR "Boost libraries not found.")
+# endif()
+# target_link_libraries(program PUBLIC Boost)
+
+# [Component]
+# find_package(Boost REQUIRED COMPONENTS ComponentA ComponentB )
+# if (!Boost_FOUND)
+#   message(FATAL_ERROR "Boost libraries not found.")
+# endif()
+# target_link_libraries(program PUBLIC Boost::ComponentA, Boost::ComponentB)
+
+# [Version]
+# find_package(Boost 1.2.3 REQUIRED ) # minimum 1.2.3
+# find_package(Boost 1.2.3 EXACT REQUIRED) # exact 1.2.3
+# if (!Boost_FOUND)
+#   message(FATAL_ERROR "Boost libraries not found.")
+# endif()
+# target_link_libraries(program PUBLIC Boost)
+
+
+# Option2: Using pkg-config ( Imported Target )
+# find_package(PkgConfig REQUIRED)
+
+# [Normal]
+# pkg_check_modules(SDL2 REQUIRED IMPORTED_TARGET sdl2)
+# if (!SDL2_FOUND)
+#   message(FATAL_ERROR "SDL2 libraries not found.")
+# endif()
+# target_link_libraries(program PUBLIC PkgConfig::SDL2)
+
+# [Version]
+# pkg_check_modules(SDL2 REQUIRED IMPORTED_TARGET sdl2>=2.0)
+# if (!SDL2_FOUND)
+#   message(FATAL_ERROR "SDL2 libraries not found.")
+# endif()
+# target_link_libraries(program PUBLIC PkgConfig::SDL2)
+
+
 #------Code settings------#
 # Add include directory
 add_library(MyLibrary SHARED
