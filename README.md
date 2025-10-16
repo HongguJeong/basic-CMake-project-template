@@ -3,18 +3,18 @@ Project Structure
 
 코드
 
-my_project/
-├── include/
-│   └── my_header.h
-├── src/
-│   └── main.cpp
-└── CMakeLists.txt
+my_project/  
+├── include/  
+│   └── my_header.h  
+├── src/  
+│   └── main.cpp  
+└── CMakeLists.txt  
 CMakeLists.txt
 
 This file defines the build process.
 
-코드
-
+### CMakeList 코드 샘플
+```
 cmake_minimum_required(VERSION 3.10)
 project(MyProject LANGUAGES CXX)
 
@@ -26,12 +26,11 @@ add_executable(my_program src/main.cpp)
 
 # Link libraries if needed
 # target_link_libraries(my_program my_library)
+```
 
 
-
-C++ Code Example
-C++
-
+### C++ Code Example
+```C++
 // include/my_header.h
 #ifndef MY_HEADER_H
 #define MY_HEADER_H
@@ -39,7 +38,9 @@ C++
 void hello_function();
 
 #endif
-C++
+```
+
+```C++
 
 // src/main.cpp
 #include <iostream>
@@ -54,27 +55,18 @@ int main() {
     hello_function();
     return 0;
 }
+```
 
-Build Instructions
+#### Build Instructions
+```bash
+# Create build directory.  
+$ mkdir build && cd build
 
-Create build directory.
-코드
+# Generate build files.  
+$ cmake ..
 
-    mkdir build && cd build
+# compile.
+$ make
 
-Generate build files.
-
-코드
-
-    cmake ..
-
-compile.
-
-코드
-
-    make
-
-run.
-
-코드
-    ./my_program
+# run.
+$ ./my_program
