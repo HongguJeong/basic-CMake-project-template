@@ -10,6 +10,9 @@ project(project LANGUAGES CXX)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -g")
 
 #------External libraries------#
+#*** Place the target_link_libraries(...) line
+#*** after the add_executable(...) command
+
 ## Option1: Using find_package
 # [Normal]
 # find_package(Boost REQUIRED)
@@ -52,7 +55,10 @@ project(project LANGUAGES CXX)
 # target_link_libraries(program PUBLIC PkgConfig::SDL2)
 
 
-#------Code settings------#
+#------User Libraries settings------#
+#*** Place the target_link_libraries(...) line
+#*** after the add_executable(...) command
+## Option1: Common Case
 # Add include directory
 add_library(MyLibrary SHARED
   ${PROJECT_SOURCE_DIR}/src/my_library1.cpp
@@ -66,11 +72,23 @@ target_include_directories(MyLibrary
   #   ${CMAKE_CURRENT_SOURCE_DIR}/include   # Only Internal Header directories
 )
 
+## Option2: Head-only-library
+# add_library() Default Option: Static ( compile with source code Keyword)
+add_library(MyHeadOnlyLib INTERFACE) # INTERFACE: No source Keyword
+
+target_include_directories(MyHeadOnlyLib
+  INTERFACE
+    $(CMAKE_CURRENT_SOURCE_DIR)/include
+)
+target_link_libraries(program PUBLIC MyHeadOnlyLib)
+
+
+#------Code settings------#
 # Create excutable
 add_executable(program src/main.cpp)
 
 # Link libraries if needed
+#***Place target_link_libraries(...) Lines HERE !!
 target_link_libraries(program MyLibrary)
 
-#
 
